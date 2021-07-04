@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mycentos1
+  labels:
+    app: mycentos1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mycentos1
+  template:
+    metadata:
+      labels:
+        app: mycentos1
+    spec:
+      containers:
+      - image: centos
+        name: mycentos1
+        command: ["/bin/sh"]
+        args: ["-c","while true; do echo 'hello sunil'; sleep 10; done"]

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-helloworld
+  labels:
+    app: http-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-helloworld
+  template:
+    metadata:
+      labels:
+        app: http-helloworld
+    spec:
+      containers:
+      - image: quay.io/sunilmangam/mangam-httpd
+        name: http-helloworld
+        ports:
+        - containerPort: 80
+          hostPort: 8888
+      imagePullSecrets:
+      - name: registrysecret
